@@ -1,6 +1,4 @@
-# Ex.No:1a - Study of Socket Programming
-## Name: GOKULNATH R
-## Reg No: 212224223001
+# Ex.No:1a  			Study of Socket Programming
 
 ## Aim: 
 To perform a study on Socket Programming
@@ -55,48 +53,56 @@ Socket programming finds applications in various domains, including web developm
 4.	Networked Games: Online multiplayer games rely on socket programming to facilitate communication between game clients and servers.
 5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
 
-## Program:
-
-### Client
-```
+##Program:
+client.py :
 
 import socket
-from datetime import datetime
-s=socket.socket()
-s.bind(('localhost',8002))
-s.listen(5)
-c,addr=s.accept()
-print("Client Address : ",addr)
-now = datetime.now()
-c.send(now.strftime("Date: %d/%m/%Y and Time: %H:%M:%S").encode())
-ack=c.recv(1024).decode()
-if ack:
-    print(ack)
-c.close()
 
-```
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-### Server
+host = '127.0.0.1'
+port = 1437
+client_socket.connect((host, port))
 
-```
+
+message = "Hello Server!"
+client_socket.send(message.encode())
+
+
+data = client_socket.recv(1024).decode()
+print("Server says:", data)
+
+
+client_socket.close()
+
+server.py
 
 import socket
-s=socket.socket()
-s.connect(('localhost',8002))
-print(s.getsockname())
-print(s.recv(1024).decode())
-s.send("acknowledgement recived from the server".encode())
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+host = '127.0.0.1'
+port = 1437
 
-```
+server_socket.bind((host, port))
 
-## Output:
+server_socket.listen(2)
+print("Server is waiting for connection...")
 
-### Client:
-<img width="575" height="159" alt="image" src="https://github.com/user-attachments/assets/6a1a39e4-8da7-43fa-964a-1a50aa40faf6" />
+conn, addr = server_socket.accept()
+print("Connected to:", addr)
 
-### Server:
-<img width="543" height="174" alt="image" src="https://github.com/user-attachments/assets/7dd6ee40-aed2-471d-bba8-445d714c82ee" />
+data = conn.recv(1024).decode()
+print("Client says:", data)
 
+
+message = "Hello Client, message received!"
+conn.send(message.encode())
+
+conn.close()
+server_socket.close()
+
+Output:
+<img width="1919" height="870" alt="image" src="https://github.com/user-attachments/assets/589af042-da50-4fad-b003-0edea0a3c1fa" />
+<img width="1919" height="719" alt="image" src="https://github.com/user-attachments/assets/23b1ef8a-c29a-4cad-a90a-33cb4df3e697" />
 
 ## Result:
 Thus the study of Socket Programming Completed Successfully
