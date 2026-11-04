@@ -1,8 +1,8 @@
-# Ex.No:1a  			Study of Socket Programming
+# Ex.No:1a  Study of Socket Programming
 
 ## Aim: 
 To perform a study on Socket Programming
-## Introduction:
+## Introduction: 
 
  	Socket programming is a crucial aspect of network communication, allowing for data exchange between computers over a network. It forms the backbone of various networked applications, enabling communication between clients and servers. This study explores the fundamental concepts of socket programming, its use cases, and provides a practical example to demonstrate its implementation.
 ## Understanding Socket Programming:
@@ -38,13 +38,26 @@ To perform a study on Socket Programming
 •	Once a connection is establi
 •	shed, servers can send and receive data using send() and recv().
 
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+
 ## Client –Server Operations
 
 Clients create a socket using socket() and connect to a server using connect().
 After establishing a connection, clients can send and receive data using send() and recv().
 
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+
 ## Use Cases of Socket Programming:
 Socket programming finds applications in various domains, including web development, file transfer protocols, online gaming, and real-time communication. It is the foundation for protocols like HTTP, FTP, and SMTP, which power the internet. Socket programming enables the development of both server and client applications, facilitating the exchange of information between devices in a networked environment.
+
+
 ## Example Use Cases:
 
 1.	Web servers: Web servers use socket programming to handle incoming HTTP requests from clients, serving web pages and content.
@@ -53,40 +66,6 @@ Socket programming finds applications in various domains, including web developm
 4.	Networked Games: Online multiplayer games rely on socket programming to facilitate communication between game clients and servers.
 5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
 
-## Program:
-```
-Client:
-import socket  
-s=socket.socket()  
-s.bind(('localhost',8000))  
-s.listen(5)  
-c,addr=s.accept() 
-while True:  
-    i=input("Enter a data: ") 
-    c.send(i.encode())  
-    ack=c.recv(1024).decode()  
-    if ack:
-        print(ack) 
-        continue 
-    else:
-        c.close()
-        break
-
-Server:
-import socket
-s=socket.socket()  
-s.connect(('localhost',8000))  
-while True:  
-    print(s.recv(1024).decode()) 
-    s.send("Acknowledgement Recived".encode())
-```
-
-## Output:
-Client:
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5172129d-beae-485d-99aa-e50c865bee49" />
-
-Server:
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dbf5bec2-ae64-43d3-8f8c-8cbe89d90131" />
 
 ## Result:
 Thus the study of Socket Programming Completed Successfully
